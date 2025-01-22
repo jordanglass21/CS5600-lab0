@@ -5,15 +5,9 @@
 
 int main() {
 
-        // create an instance of an empty queue
-        queue_t queue;
-        queue.first = NULL;
-        queue.last = NULL;
-        queue.size = 0;
-        queue.print_data = print_process; // this is setting the function we will use to print the data
-        // since we have a queue of process_t, we have written a function to print a process_t
+	queue_t queue; 
+    	initialize_queue(&queue, print_process);
 
-	// initialize data
 	int key = 3; // used for caesar cipher
 
 	// create instances of some proccesses
@@ -22,71 +16,66 @@ int main() {
         process_t *p3 = create_process(3, "C");
 
 	printf("\nThis program enqueues three process_t elements and then dequeues all three elements.\n");
-	printf("Caesar cipher with key=%d is used.\n\n", key);
+	printf("Caesar cipher with key=%d is used.\n", key);
         
-	// add proccess to the queue
-        printf("Enqueue: ");
-        print_process(p1);
-        printf("\n");
+	// view the process
+        printf("\nEnqueue: ");
+	print_process(p1);
 	// encode the processes
         p1->name = encode(p1->name, key);
-	// enque the process
+	// enqueue the process
         enqueue(&queue, p1);
 	//view the queue
-        printf("Queue: ");
         print_queue(&queue);
 
-        printf("Enqueue: ");
+	// view the process
+	printf("\nEnqueue: ");
         print_process(p2);
-        printf("\n");
         // encode the processes
         p2->name = encode(p2->name, key);
-        // enque the process
+        // enqueue the process
         enqueue(&queue, p2);
         //view the queue
-        printf("Queue: ");
         print_queue(&queue);
-	
-	// add proccess to the queue
-        printf("Enqueue: ");
+
+	// view the process	
+	printf("\nEnqueue: ");
         print_process(p3);
-	printf("\n");
         // encode the processes
         p3->name = encode(p3->name, key);
-        // enque the process
+        // enqueue the process
         enqueue(&queue, p3);
         //view the queue
-        printf("Queue: ");
         print_queue(&queue);
 	
-	//remove process from the queue
+	printf("\nDequeue: ");
         dequeue(&queue);
-	printf("Dequeue: ");
+	// decode the process
 	p1->name = decode(p1->name, key);
+	// view the process
         print_process(p1);
-        printf("\n");
 	//view the queue
-        printf("Queue: ");
         print_queue(&queue);
 
-	//remove process from the queue
+	printf("\nDequeue: ");
 	dequeue(&queue);
-        printf("Dequeue: ");
+	// deocode the process
         p2->name = decode(p2->name, key);
+	// view the process
         print_process(p2);
-        printf("\n");
         //view the queue
-        printf("Queue: ");
         print_queue(&queue);
 
 	//remove process from the queue
+	printf("\nDequeue: ");
 	dequeue(&queue);
-        printf("Dequeue: ");
+	// decode the process
         p3->name = decode(p3->name, key);
+	// view the process
         print_process(p3);
-        printf("\n");
         //view the queue
-        printf("Queue: ");
         print_queue(&queue);
 	printf("\n");
+
+	return(0); // exit gracefullt
 }

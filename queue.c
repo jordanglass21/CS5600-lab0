@@ -77,6 +77,7 @@ void print_queue(queue_t *queue) {
 	// create a pointer to the next element of the queue
 	node_t *next = queue->first;
 
+	printf("\nQueue: ");
 	if (next == NULL) {
 		printf("[]");
 	}
@@ -121,8 +122,20 @@ void print_process(void *data) {
 	if (data == NULL) {
 		return;
 	}
-
 	 // cast void pointer to process_t pointer
     	process_t *process = (process_t *)data;
 	printf("[id: %d, name: %s]", process->identifier, process->name);
+}
+
+/**
+ * Initializes the queue.
+ *
+ * @param queue Pointer to the queue to initialize.
+ * @param print_func Function to print queue data.
+ */
+void initialize_queue(queue_t *queue, void (*print_func)(void *)) {
+    queue->first = NULL;
+    queue->last = NULL;
+    queue->size = 0;
+    queue->print_data = print_func; // Set the function pointer
 }

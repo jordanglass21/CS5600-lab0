@@ -62,3 +62,11 @@ process_t *create_process(int identifier, char *name);
  * @param process A pointer to the process to print.
  */
 void print_process(void *process);
+
+/**
+ * Initializes the queue.
+ *
+ * @param queue Pointer to the queue to initialize.
+ * @param print_func Function to print queue data.
+ */
+void initialize_queue(queue_t *queue, void (*print_func)(void *));
